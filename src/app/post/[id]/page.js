@@ -1,11 +1,11 @@
 "use client"
+import Comments from '@/components/Comments'
 import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import {BiArrowBack} from "react-icons/bi"
 const page = () => {
   const router=useRouter();
   let { id } = useParams();
-  const [search,setSearch]=useState("");
   const [data,setData]=useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,14 +23,14 @@ const page = () => {
   }, []);
   const date=new Date(data.created_at);
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto select-none">
       <div>
         <div className="sm:mt-4 h-20 flex flex-col justify-center bg-slate-200">
               <div className=" ml-2 flex justify-around  sm:grid grid-cols-3 ">
                   <div className='flex flex-col justify-between cursor-pointer' onClick={()=>router.back()}>
                     <BiArrowBack className='text-[40px]'/>
                   </div>
-                  <div className="flex ">
+                  <div className="flex cursor-pointer " onClick={()=>router.push("/")}>
                       <img src="https://hn.algolia.com/public/899d76bbc312122ee66aaaff7f933d13.png" alt="logo" className="h-10 w-10"/>
                       <p className=" flex flex-col justify-center text-[18px] sm:text-[24px] ml-3 font-mono">Search Hacker News</p>
                   </div>
@@ -49,16 +49,18 @@ const page = () => {
             </div>
           </div>
       }
-      {!loading && !error && <div className='grid md:grid-cols-2 gap-16'>
-        <div className='mt-5'>
+      {!loading && !error && <div className='grid md:grid-cols-2 gap-5'>
+        <div className='mt-5 flex flex-col gap-7 bg-slate-100 h-fit p-5'>
           <p className='font-bold text-[32px]'>{data.title}</p>
           <p className='font-semibold text-[24px]'>{data.text}</p>
-        </div>
-        <div className='mt-5 flex flex-col gap-10'>
           <p className='font-semibold text-gray-700 text-[24px]'>Author - {data.author}</p>
           <p className='font-semibold text-gray-700 text-[24px]'>Published On - {date.toLocaleDateString()}</p>
           <p className='font-semibold text-gray-700 text-[24px]'>Points - {data.points}</p>
           <button onClick={()=>window.location.assign(source)} className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full">Source</button>
+        </div>
+        <div className='mt-5 flex flex-col gap-4 p-5'>
+          <p className='font-semibold text-gray-700 text-[24px] bg-slate-100 gap-3'>Comments -</p>
+          {data.children.map((comment)=><Comments key={comment.id} author={comment.author} date={comment.created_at} text={comment.text} />)}
         </div>
       </div>}
     </div>

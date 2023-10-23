@@ -1,9 +1,11 @@
 "use client"
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 import {AiOutlineSearch} from "react-icons/ai"
 import {IoMdClose} from "react-icons/io";
 
 const Navbar = ({setSearch}) => {
+    const router=useRouter();
     const [showSearch,setShowSearch]=useState(false);
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -11,7 +13,7 @@ const Navbar = ({setSearch}) => {
         setShowSearch(false);
     }
   return (
-    <div className="bg-slate-200">
+    <div className="bg-slate-200 select-none">
         <div className="  sm:mt-4 h-20 flex flex-col justify-center">
             <div className=" ml-4 flex justify-around  sm:grid grid-cols-2 ">
                 <div className="flex ">
@@ -20,10 +22,10 @@ const Navbar = ({setSearch}) => {
                 </div>
                 
                 <div className="flex justify-around">
-                    <p className="hidden sm:flex flex-col justify-center font-medium text-[18px]">Data Bleaches</p>
-                    <p className="hidden sm:flex flex-col justify-center font-medium text-[18px]">Cyber Attack</p>
-                    <p className="hidden sm:flex flex-col justify-center font-medium text-[18px]">Vulnerabilities</p>
-                    <div onClick={()=>setShowSearch(!showSearch)}>
+                    <p onClick={()=>setSearch("Data Bleaches")} className="hidden sm:flex flex-col justify-center font-medium text-[18px] cursor-pointer">Data Bleaches</p>
+                    <p onClick={()=>setSearch("Cyber Attack")} className="hidden sm:flex flex-col justify-center font-medium text-[18px] cursor-pointer">Cyber Attack</p>
+                    <p onClick={()=>setSearch("Vulnerabilities")} className="hidden sm:flex flex-col justify-center font-medium text-[18px] cursor-pointer">Vulnerabilities</p>
+                    <div className="cursor-pointer" onClick={()=>setShowSearch(!showSearch)}>
                         {showSearch?<IoMdClose className="text-[40px]"/>:<AiOutlineSearch  className="text-[40px]"/>}
                     </div>
                 </div>
