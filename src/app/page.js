@@ -9,7 +9,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch(`http://hn.algolia.com/api/v1/search?query=${search}`)
+    fetch(`https://hn.algolia.com/api/v1/search?query=${search}`)
       .then(response => response.json())
       .then(data => {
         setData(data.hits);
