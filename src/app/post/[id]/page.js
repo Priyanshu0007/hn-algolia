@@ -10,7 +10,7 @@ const page = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetch(`http://hn.algolia.com/api/v1/items/${id}`)
+    fetch(`https://hn.algolia.com/api/v1/items/${id}`)
       .then(response => response.json())
       .then(data => {
         setData(data);
