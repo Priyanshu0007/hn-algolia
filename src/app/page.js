@@ -8,13 +8,6 @@ export default function Home() {
   const [data,setData]=useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const fetchData = async () => {
-  //   const response = await fetch(`http://hn.algolia.com/api/v1/search?query=${search}`);
-  //   //const response = await fetch("http://hn.algolia.com/api/v1/items/13810015");
-  //   const data = await response.json();
-  //   setData(data.hits);
-  // }
-  // useEffect(() => {fetchData()},[search])
   useEffect(() => {
     fetch(`http://hn.algolia.com/api/v1/search?query=${search}`)
       .then(response => response.json())
