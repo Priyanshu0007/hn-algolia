@@ -11,8 +11,8 @@ const Navbar = ({setSearch}) => {
         setShowSearch(false);
     }
   return (
-    <div>
-        <div className=" sm:mt-4 h-20 flex flex-col justify-center">
+    <div className="bg-slate-200">
+        <div className="  sm:mt-4 h-20 flex flex-col justify-center">
             <div className=" ml-4 flex justify-around  sm:grid grid-cols-2 ">
                 <div className="flex ">
                     <img src="https://hn.algolia.com/public/899d76bbc312122ee66aaaff7f933d13.png" alt="logo" className="h-10 w-10"/>
@@ -29,7 +29,7 @@ const Navbar = ({setSearch}) => {
                 </div>
             </div>
         </div>
-        {showSearch && <form onSubmit={handleSubmit}>   
+        {showSearch && <form className="mr-4 ml-4 pb-4" onSubmit={handleSubmit}>   
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only ">Search</label>
             <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -37,7 +37,7 @@ const Navbar = ({setSearch}) => {
                         <path  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                     </svg>
                 </div>
-                <input name="search" type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange-500 focus:border-orange-500 " placeholder="Search...." required/>
+                <input name="search" type="search" id="default-search" className="block w-full p-4 pl-10 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange-500 focus:border-orange-500 " placeholder="Search...." required/>
                 <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ">Search</button>
             </div>
         </form>}
